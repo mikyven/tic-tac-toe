@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
+:root {
+  font-family: Inter, system-ui, Arial, sans-serif;
+  font-weight: 400;
+
+  margin: 0 auto;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 650px;
+
+  color-scheme: light dark;
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #000;
+    background-color: #ffffff;
+  }
+}
+
+@media only screen and (max-width: 768px), only screen and (max-height: 860px) {
+  :root {
+    width: 570px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  :root {
+    width: 100vw;
+  }
+}

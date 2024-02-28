@@ -6,9 +6,10 @@
   },
   "extends": [
     "airbnb",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
     "airbnb-typescript",
+    "plugin:react/recommended",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
     "prettier"
   ],
   "parser": "@typescript-eslint/parser",
@@ -63,6 +64,8 @@
     "semi": "error",
     "no-console": "error",
     "react/react-in-jsx-scope": 0,
-    "react/jsx-uses-react": 0
+    "react/jsx-uses-react": 0,
+    "indent": "off",
+    "typescript-eslint/indent": "off"
   }
 }

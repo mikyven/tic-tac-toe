@@ -18,7 +18,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
   },
-  "include": ["./src/**/*", ".eslintrc.json"],
+  "include": ["./src/**/*", ".eslintrc.json", "react-app-env.d.ts"],
   "references": [
     {
       "path": "./tsconfig.node.json",

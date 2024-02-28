@@ -1,0 +1,309 @@
+@use 'variables' as vars;
+
+// Content
+
+.header {
+  font-size: 72px;
+  margin: 50px 0 50px 0;
+  user-select: none;
+}
+
+.button {
+  font-family: inherit;
+  cursor: pointer;
+  border: 0;
+  border-radius: 25px;
+
+  &:hover {
+    filter: brightness(0.9);
+  }
+
+  &:active {
+    filter: brightness(0.7);
+  }
+}
+
+.button_play {
+  width: 300px;
+  height: 150px;
+  background-color: rgb(70, 192, 70);
+  color: white;
+  font-weight: bold;
+}
+
+.button_play_start {
+  margin-bottom: 180px;
+  font-size: 64px;
+}
+
+.end-screen {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 1;
+  top: calc(50vh - 255px);
+  left: calc(50vw - 325px);
+  height: 650px;
+  width: 650px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: 0.5s 1 alternate endScreenFadeIn;
+
+  .button_play_again {
+    margin-bottom: 20px;
+    font-size: 42px;
+  }
+
+  .button-exit {
+    width: 150px;
+    height: 75px;
+    background-color: rgb(160, 3, 3);
+    border-radius: 10px;
+    font-size: 32px;
+  }
+}
+
+.gamefield {
+  display: flex;
+
+  .tiles {
+    height: 600px;
+    width: 600px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    margin: auto auto 50px auto;
+  }
+
+  .lines {
+    display: flex;
+    position: absolute;
+    z-index: -1;
+    width: 600px;
+    height: 600px;
+
+    .line {
+      background-color: white;
+      border-radius: 5px;
+    }
+
+    &.lines_horizontal {
+      flex-direction: column;
+      margin-top: 195px;
+      row-gap: 190px;
+      height: 400px;
+    }
+
+    .line_horizontal {
+      height: 10px;
+      width: 600px;
+      animation: 1s 1 alternate horizontalSlideIn;
+    }
+
+    &.lines_vertical {
+      width: 400px;
+      column-gap: 190px;
+      margin-left: 195px;
+    }
+
+    .line_vertical {
+      height: 600px;
+      width: 10px;
+      animation: 1s 1 alternate verticalSlideIn;
+    }
+  }
+}
+
+// Media queries
+
+@media only screen and (max-width: 768px), only screen and (max-height: 860px) {
+  .header {
+    font-size: 64px;
+  }
+
+  .button_play {
+    width: 250px;
+    height: 125px;
+  }
+
+  .button_play_start {
+    font-size: 48px;
+  }
+
+  .end-screen {
+    height: 570px;
+    width: 570px;
+    top: calc(50vh - 225px);
+    left: calc(50vw - 285px);
+
+    .button_play_again {
+      margin-bottom: 15px;
+      font-size: 36px;
+    }
+
+    .button-exit {
+      height: 72.5px;
+      width: 125px;
+      font-size: 28px;
+    }
+  }
+
+  .gamefield {
+    .tiles {
+      height: 525px;
+      width: 525px;
+    }
+
+    .lines {
+      height: 525px;
+      width: 525px;
+
+      &.lines_horizontal {
+        flex-direction: column;
+        margin-top: 170px;
+        row-gap: 165px;
+        height: 350px;
+      }
+
+      .line_horizontal {
+        width: 525px;
+      }
+
+      &.lines_vertical {
+        width: 350px;
+        column-gap: 165px;
+        margin-left: 170px;
+      }
+
+      .line_vertical {
+        height: 525px;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .header {
+    font-size: 48px;
+    margin: 25px 0 25px 0;
+  }
+
+  .button {
+    border-radius: 15px;
+  }
+
+  .button_play {
+    width: 200px;
+    height: 100px;
+  }
+
+  .button_play_start {
+    font-size: 42px;
+  }
+
+  .end-screen {
+    height: 105vw;
+    width: 100vw;
+    left: 0;
+    top: calc(50vh - 52.5vw + 30px);
+
+    .button_play_again {
+      border-radius: 15px;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+
+    .button-exit {
+      height: 50px;
+      width: 100px;
+      border-radius: 10px;
+      font-size: 24px;
+    }
+  }
+
+  .gamefield {
+    .tiles {
+      height: vars.$mobile-hw;
+      width: vars.$mobile-hw;
+    }
+
+    .lines {
+      height: vars.$mobile-hw;
+      width: vars.$mobile-hw;
+
+      &.lines_horizontal {
+        flex-direction: column;
+        height: calc(vars.$mobile-hw / 3 * 2);
+        row-gap: calc((vars.$mobile-hw / 3) - 5px);
+        margin-top: calc((vars.$mobile-hw / 3) - 2.5px);
+      }
+
+      .line_horizontal {
+        height: 5px;
+        width: vars.$mobile-hw;
+      }
+
+      &.lines_vertical {
+        width: calc(vars.$mobile-hw / 3 * 2);
+        column-gap: calc((vars.$mobile-hw / 3) - 5px);
+        margin-left: calc((vars.$mobile-hw / 3) - 2.5px);
+      }
+
+      .line_vertical {
+        width: 5px;
+        height: vars.$mobile-hw;
+      }
+    }
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  .gamefield {
+    .lines {
+      .line {
+        background-color: #000;
+      }
+    }
+  }
+
+  .button-exit {
+    color: #fff;
+  }
+}
+
+// Animations
+
+@keyframes endScreenFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes horizontalSlideIn {
+  from {
+    margin-right: 100%;
+    width: 0;
+  }
+
+  to {
+    margin-right: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes verticalSlideIn {
+  from {
+    margin-bottom: 100%;
+    height: 0;
+  }
+
+  to {
+    margin-bottom: 0%;
+    height: 100%;
+  }
+}

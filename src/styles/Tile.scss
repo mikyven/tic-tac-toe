@@ -1,0 +1,48 @@
+@use 'variables.scss' as vars;
+
+.tile {
+  height: 200px;
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 150px;
+  width: 150px;
+  pointer-events: none;
+  user-select: none;
+  border: none;
+}
+
+@media only screen and (max-width: 768px), screen and (max-height: 860px) {
+  .tile {
+    height: 175px;
+    width: 175px;
+  }
+
+  .icon {
+    height: 125px;
+    width: 125px;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .tile {
+    height: calc(vars.$mobile-hw / 3);
+    width: calc(vars.$mobile-hw / 3);
+  }
+
+  .icon {
+    height: calc(vars.$mobile-hw / 4.5);
+    width: calc(vars.$mobile-hw / 4.5);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .icon {
+    filter: invert(100%) sepia(6%) saturate(9%) hue-rotate(300deg)
+      brightness(105%) contrast(100%);
+  }
+}
